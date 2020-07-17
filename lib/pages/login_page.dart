@@ -17,6 +17,9 @@ class LoginPage extends StatelessWidget {
   }
 
   _body() {
+    final TextEditingController _loginController = TextEditingController();
+    final TextEditingController _senhaController = TextEditingController();
+
     return Container(
       padding: EdgeInsets.all(16.0),
       child: ListView(
@@ -24,6 +27,7 @@ class LoginPage extends StatelessWidget {
           Formulario(
             'Login',
             'Digite o login...',
+            controller: _loginController,
           ),
           SizedBox(
             height: 8.0,
@@ -32,6 +36,7 @@ class LoginPage extends StatelessWidget {
             'Senha',
             'Digite a senha...',
             password: true,
+            controller: _senhaController,
           ),
           SizedBox(
             height: 16.0,
@@ -39,7 +44,8 @@ class LoginPage extends StatelessWidget {
           Container(
             height: 48.0,
             child: Botao('Login', () {
-              print('Fui pressionado');
+              print('Login => ${_loginController.text}');
+              print('Senha => ${_senhaController.text}');
             }),
           ),
         ],

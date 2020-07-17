@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class Botao extends StatelessWidget {
   final String titulo;
-  final Function funcao;
   final Color corTitulo;
+  final Function onPressed;
 
-  Botao(this.titulo, this.funcao, {this.corTitulo = Colors.white});
+  Botao(this.titulo, this.onPressed, {this.corTitulo = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class Botao extends StatelessWidget {
         ),
       ),
       color: Colors.blue,
-      onPressed: funcao,
+      onPressed: onPressed,
     );
   }
 }

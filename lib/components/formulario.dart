@@ -4,12 +4,15 @@ class Formulario extends StatelessWidget {
   final String label;
   final String hint;
   final bool password;
+  final TextEditingController controller;
 
-  const Formulario(this.label, this.hint, {this.password = false});
+  const Formulario(this.label, this.hint,
+      {this.password = false, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       obscureText: password,
       style: TextStyle(
         fontSize: 24.0,
