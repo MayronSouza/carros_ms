@@ -5,13 +5,15 @@ class CampoTexto extends StatelessWidget {
   final String hint;
   final bool password;
   final TextEditingController controller;
+  final FormFieldValidator<String> validated;
 
   const CampoTexto(this.label, this.hint,
-      {this.password = false, this.controller});
+      {this.password = false, this.controller, this.validated});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validated,
       controller: controller,
       obscureText: password,
       style: TextStyle(
