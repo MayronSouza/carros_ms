@@ -20,6 +20,8 @@ class Formulario extends StatelessWidget {
               'Digite o login...',
               controller: _loginController,
               validated: _validateLogin,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
             ),
             SizedBox(
               height: 8.0,
@@ -30,13 +32,17 @@ class Formulario extends StatelessWidget {
               password: true,
               controller: _senhaController,
               validated: _validateSenha,
+              keyboardType: TextInputType.number,
             ),
             SizedBox(
               height: 16.0,
             ),
             Container(
               height: 48.0,
-              child: Botao('Login', _onPressLoginValidated),
+              child: Botao(
+                'Login',
+                _onPressLoginValidated,
+              ),
             ),
           ],
         ),

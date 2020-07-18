@@ -5,7 +5,11 @@ class Botao extends StatelessWidget {
   final Color corTitulo;
   final Function onPressed;
 
-  Botao(this.titulo, this.onPressed, {this.corTitulo = Colors.white});
+  Botao(
+    this.titulo,
+    this.onPressed, {
+    this.corTitulo = Colors.white,
+  });
 
   @override
   Widget build(BuildContext context) {
