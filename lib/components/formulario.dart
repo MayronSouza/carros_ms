@@ -1,8 +1,10 @@
 import 'package:carros_ms/components/botao.dart';
 import 'package:carros_ms/components/campo_texto.dart';
+import 'package:carros_ms/pages/api_response.dart';
 import 'package:carros_ms/pages/home_page.dart';
 import 'package:carros_ms/pages/login_api.dart';
 import 'package:carros_ms/pages/usuario.dart';
+import 'package:carros_ms/utils/alert.dart';
 import 'package:flutter/material.dart';
 
 class Formulario extends StatefulWidget {
@@ -87,9 +89,11 @@ class _FormularioState extends State<Formulario> {
     String login = _loginController.text;
     String senha = _senhaController.text;
 
-    Usuario user = await LoginApi.login(login, senha);
+    ApiResponse response = await LoginApi.login(login, senha);
 
-    if (user != null) {
+    if (response.ok) {
+      Usuario user = response.result;
+
       print('>>> $user');
 
       Navigator.push(
@@ -99,7 +103,7 @@ class _FormularioState extends State<Formulario> {
         }),
       );
     } else {
-      print('Login incorreto');
+      alert(context, response.msg);
     }
 
     print('Login => $login');
