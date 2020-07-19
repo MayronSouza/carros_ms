@@ -14,10 +14,9 @@ class Formulario extends StatefulWidget {
 
 class _FormularioState extends State<Formulario> {
   final TextEditingController _loginController = TextEditingController();
-
   final TextEditingController _senhaController = TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _showProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +53,7 @@ class _FormularioState extends State<Formulario> {
               child: Botao(
                 'Login',
                 _onPressLoginValidated,
+                showProgress: _showProgress,
               ),
             ),
           ],
