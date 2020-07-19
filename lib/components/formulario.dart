@@ -89,6 +89,10 @@ class _FormularioState extends State<Formulario> {
     String login = _loginController.text;
     String senha = _senhaController.text;
 
+    setState(() {
+      _showProgress = true;
+    });
+
     ApiResponse response = await LoginApi.login(login, senha);
 
     if (response.ok) {
@@ -105,6 +109,10 @@ class _FormularioState extends State<Formulario> {
     } else {
       alert(context, response.msg);
     }
+
+    setState(() {
+      _showProgress = false;
+    });
 
     print('Login => $login');
     print('Senha => $senha');
