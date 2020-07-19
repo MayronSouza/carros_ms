@@ -1,10 +1,19 @@
 import 'package:carros_ms/components/botao.dart';
 import 'package:carros_ms/components/campo_texto.dart';
+import 'package:carros_ms/pages/home_page.dart';
+import 'package:carros_ms/pages/login_api.dart';
 import 'package:flutter/material.dart';
 
-class Formulario extends StatelessWidget {
+class Formulario extends StatefulWidget {
+  @override
+  _FormularioState createState() => _FormularioState();
+}
+
+class _FormularioState extends State<Formulario> {
   final TextEditingController _loginController = TextEditingController();
+
   final TextEditingController _senhaController = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -68,13 +77,29 @@ class Formulario extends StatelessWidget {
     }
   }
 
-  _onPressLoginValidated() {
+  _onPressLoginValidated() async {
     bool formOk = _formKey.currentState.validate();
     if (!formOk) {
       return;
     }
 
-    print('Login => ${_loginController.text}');
-    print('Senha => ${_senhaController.text}');
+    String login = _loginController.text;
+    String senha = _senhaController.text;
+
+    bool ok = await LoginApi.login(login, senha);
+
+    if (ok) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return HomePage();
+        }),
+      );
+    } else {
+      print('Login incorreto');
+    }
+
+    print('Login => $login');
+    print('Senha => $senha');
   }
 }
